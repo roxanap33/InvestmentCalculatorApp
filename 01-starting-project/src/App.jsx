@@ -5,10 +5,10 @@ import UserInputForm from "./components/UserInputForm";
 import Results from "./components/Results";
 
 const INITIAL_INPUT_VALUES = {
-  initialInvestment: 0,
-  annualInvestment: 0,
-  expectedReturn: 0,
-  duration: 0,
+  initialInvestment: 10000,
+  annualInvestment: 1200,
+  expectedReturn: 6,
+  duration: 10,
 };
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
     setInputValue((prevValues) => {
       return {
         ...prevValues,
-        [inputName]: newValue,
+        [inputName]: +newValue,
       };
     });
   }
@@ -30,7 +30,7 @@ function App() {
         handleInputValueChange={handleInputValueChange}
         data={INITIAL_INPUT_VALUES}
       />
-      <Results />
+      <Results input={inputValue} />
     </main>
   );
 }

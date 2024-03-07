@@ -1,76 +1,48 @@
-const tableHeaders = [
-  "Year",
-  "Investment Value",
-  "Interest (Year)",
-  "Total Interest",
-  "Invested Capital",
-];
+import { calculateInvestmentResults, formatter } from "../util/investment";
 
-const tableData = [
-  {
-    year: 2000,
-    investmentValue: 200,
-    interestYear: 100,
-    totalInterest: 4000,
-    investedCapital: 3000,
-  },
-  {
-    year: 2001,
-    investmentValue: 200,
-    interestYear: 100,
-    totalInterest: 4000,
-    investedCapital: 3000,
-  },
-  {
-    year: 2002,
-    investmentValue: 200,
-    interestYear: 100,
-    totalInterest: 4000,
-    investedCapital: 3000,
-  },
-  {
-    year: 2003,
-    investmentValue: 200,
-    interestYear: 100,
-    totalInterest: 4000,
-    investedCapital: 3000,
-  },
-  {
-    year: 2004,
-    investmentValue: 200,
-    interestYear: 100,
-    totalInterest: 4000,
-    investedCapital: 3000,
-  },
-  {
-    year: 2005,
-    investmentValue: 200,
-    interestYear: 100,
-    totalInterest: 4000,
-    investedCapital: 3000,
-  },
-];
+const tableHeaders = {
+  1: "Year",
+  2: "Investment Value",
+  3: "Interest (Year)",
+  4: "Total Interest",
+  5: "Invested Capital",
+};
 
 function getTableHeaders(tableHeaders) {
-  return tableHeaders.map((header) => <th>{header}</th>);
+  return Object.keys(tableHeaders).map((key) => (
+    <th key={key}>{tableHeaders[key]}</th>
+  ));
 }
 
-export default function Results() {
+export default function Results({ input }) {
+  const resultData = calculateInvestmentResults(input);
+  const initialInvestment =
+    resultData[0].valueEndOfYear -
+    resultData[0].interest -
+    resultData[0].annualInvestment;
+  console.log(resultData);
+
   return (
     <table id="result">
       <thead>
         <tr>{getTableHeaders(tableHeaders)}</tr>
       </thead>
       <tbody>
-        {tableData &&
-          tableData.map((row) => {
+        {resultData &&
+          resultData.map((row) => {
+            const totalInterest =
+              row.valueEndOfYear -
+              row.annualInvestment * row.year -
+              initialInvestment;
+            const totalAmountInvested = row.valueEndOfYear - totalInterest;
+
             return (
               <tr key={row.year}>
                 <td>{row.year}</td>
-                <td>{row.investmentValue}</td>
-                <td>{row.interestYear}</td>
-                <td>{row.totalInterest}</td>
-                <td>{row.investedCapital}</td>
+                <td>{formatter.format(row.valueEndOfYear)}</td>
+                <td>{formatter.format(row.interest)}</td>
+                <td>{formatter.format(totalInterest)}</td>
+                <td>{formatter.format(totalAmountInvested)}</td>
               </tr>
             );
           })}
