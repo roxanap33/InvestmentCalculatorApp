@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Header from "./components/Header";
 import UserInputForm from "./components/UserInputForm";
+import Results from "./components/Results";
 
 const INITIAL_INPUT_VALUES = {
   initialInvestment: 0,
@@ -29,6 +30,7 @@ function App() {
         handleInputValueChange={handleInputValueChange}
         data={INITIAL_INPUT_VALUES}
       />
+      <Results />
     </main>
   );
 }
