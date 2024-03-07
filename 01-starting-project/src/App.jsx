@@ -5,8 +5,8 @@ import UserInputForm from "./components/UserInputForm";
 
 const INITIAL_INPUT_VALUES = {
   initialInvestment: 0,
-  annualInvestment: 3,
-  expectedReturn: 8,
+  annualInvestment: 0,
+  expectedReturn: 0,
   duration: 0,
 };
 

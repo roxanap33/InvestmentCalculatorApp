@@ -7,13 +7,13 @@ export default function UserInput({ handleInputValueChange, data }) {
         <Input
           labelText="initial investment"
           inputName={Object.keys(data)[0]}
-          inputVal={data.initial}
+          inputVal={data.initialInvestment}
           onInputValueChange={handleInputValueChange}
         />
         <Input
           labelText="annual investment"
           inputName={Object.keys(data)[1]}
-          inputVal={data.annual}
+          inputVal={data.annualInvestment}
           onInputValueChange={handleInputValueChange}
         />
       </div>
@@ -21,7 +21,7 @@ export default function UserInput({ handleInputValueChange, data }) {
         <Input
           labelText="expected return"
           inputName={Object.keys(data)[2]}
-          inputVal={data.expected}
+          inputVal={data.expectedReturn}
           onInputValueChange={handleInputValueChange}
         />
         <Input
