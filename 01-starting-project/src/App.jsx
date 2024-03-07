@@ -1,11 +1,11 @@
 import Header from "./components/Header";
-import UserInput from "./components/UserInput";
+import UserInputForm from "./components/UserInputForm";
 
 function App() {
   return (
     <main>
       <Header />
-      <UserInput />
+      <UserInputForm />
     </main>
   );
 }
