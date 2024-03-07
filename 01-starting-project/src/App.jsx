@@ -14,6 +14,8 @@ const INITIAL_INPUT_VALUES = {
 function App() {
   const [inputValue, setInputValue] = useState(INITIAL_INPUT_VALUES);
 
+  const inputIsValid = inputValue.duration >= 1;
+
   function handleInputValueChange(inputName, newValue) {
     setInputValue((prevValues) => {
       return {
@@ -30,7 +32,10 @@ function App() {
         handleInputValueChange={handleInputValueChange}
         data={INITIAL_INPUT_VALUES}
       />
-      <Results input={inputValue} />
+      {!inputIsValid && (
+        <p className="center">Please enter a duration greater than 0</p>
+      )}
+      {inputIsValid && <Results input={inputValue} />}
     </main>
   );
 }
